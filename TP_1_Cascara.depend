@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1458743118 source:c:\users\alumno.lab5pc03\desktop\tp_1_cascara\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1458742427 c:\users\alumno.lab5pc03\desktop\tp_1_cascara\funciones.h
+	"D:\Mis Documentos\libreriacrear.c"
+	"D:\Mis Documentos\suma.c"
+	"D:\Mis Documentos\resta2.c"
+	"D:\Mis Documentos\division.c"
+	"D:\Mis Documentos\multiplicacion.c"
+
+1458737915 d:\mis documentos\libreriacrear.c
+	<conio.h>
+	<stdio.h>
+	<ctype.h>
+
+1458738125 d:\mis documentos\suma.c
+	<conio.h>
+	<stdio.h>
+	<ctype.h>
+
+1458738127 d:\mis documentos\resta2.c
+	<conio.h>
+	<stdio.h>
+	<ctype.h>
+
+1458738091 d:\mis documentos\division.c
+	<conio.h>
+	<stdio.h>
+	<ctype.h>
+
+1458738130 d:\mis documentos\multiplicacion.c
+	<conio.h>
+	<stdio.h>
+	<ctype.h>
+
