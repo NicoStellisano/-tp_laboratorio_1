@@ -2,10 +2,10 @@
 #include<stdio.h>
 #include<ctype.h>
 //prototipo
-float factorial (float x);
-float factorial (float x)
+float factorial (double x);
+float factorial (double x)
 {
-    float resp;
+    double resp;
     if(x==1)
         return 1;
     resp=x*factorial(x-1);

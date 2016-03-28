@@ -29,14 +29,14 @@ int main()
                 system("cls");
                 printf("\nIngrese numero 1: ");
                 scanf("%f", &num1);
-                printf("\nNumero Ingresado: %f \n", num1);
+                printf("\nNumero Ingresado: %.2f \n", num1);
                 band=1;//Valida que fue ingresado el primer número
                 break;
             case 2:
                 system("cls");
                 printf("\nIngrese numero 2: ");
                 scanf("%f", &num2);
-                printf("\nNumero Ingresado: %f \n", num2);
+                printf("\nNumero Ingresado: %.2f \n", num2);
                 band1=1;//Valida que fue ingresado el segundo número
                 break;
             case 3:
@@ -44,7 +44,7 @@ int main()
                 {
                     system("cls");
                      resp = suma_de_2(num1,num2);//Suma el numero 1 con el numero 2
-                printf("\nLa suma de los numeros es: %f", resp);
+                printf("\nLa suma de los numeros es: %.2f", resp);
                 }else
                 {
                     printf("\nDebe ingresar los 2 numeros\n");
@@ -56,7 +56,7 @@ int main()
                 {
                     system("cls");
                 resp = resta_de_2(num1,num2);//Resta el numero 1 con el numero 2
-                printf("\nLa resta de los numeros es: %f", resp);
+                printf("\nLa resta de los numeros es: %.2f", resp);
                 }
                 else
                 {
@@ -73,11 +73,11 @@ int main()
                      printf("El segundo numero ingresado, debe ser distinto de 0");
                      printf("\nIngrese numero 2: ");
                      scanf("%f", &num2);
-                     printf("\nNumero Ingresado: %f \n", num2);
+                     printf("\nNumero Ingresado: %.2f \n", num2);
                   }
 
                   resp = division_de_2(num1,num2);//Divide el numero 1 con el numero 2
-                  printf("\nLa division de los numeros es: %f", resp);
+                  printf("\nLa division de los numeros es: %.2f", resp);
                 }
                 else
                 {
@@ -89,7 +89,7 @@ int main()
                 {
                     system("cls");
                     resp = multiplicacion_de_2(num1,num2);//Multiplica el numero 1 con el numero 2
-                    printf("\nLa multiplicacion de los numeros es: %f", resp);
+                    printf("\nLa multiplicacion de los numeros es: %.2f", resp);
                 }
                 else
                 {
@@ -100,8 +100,9 @@ int main()
                 if(band == 1)
                 {
                     system("cls");
+                    num1=(double)num1;
                     resp = factorial(num1);//Realiza el factorial del numero 1
-                    printf("\nEl Factorial del numero es: %f", resp);
+                    printf("\nEl Factorial del numero es: %.2Lf", resp);
                 }
                 else
                 {
@@ -111,17 +112,18 @@ int main()
             case 8:
                 if(band == 1 && band1 ==1)
                 {
+                    num1=(double)num1;
                     system("cls");
                     resp = suma_de_2(num1,num2);
-                    printf("\nLa suma de los numeros es: %f", resp);
+                    printf("\nLa suma de los numeros es: %.2f", resp);
                     resp = resta_de_2(num1,num2);
-                    printf("\nLa resta de los numeros es: %f", resp);
+                    printf("\nLa resta de los numeros es: %.2f", resp);
                     resp = division_de_2(num1,num2);
-                    printf("\nLa division de los numeros es: %f", resp);
+                    printf("\nLa division de los numeros es: %.2f", resp);
                     resp = multiplicacion_de_2(num1,num2);
-                    printf("\nLa multiplicacion de los numeros es: %f", resp);
+                    printf("\nLa multiplicacion de los numeros es: %.2f", resp);
                     resp = factorial(num1);
-                    printf("\nEl factorial del numero es: %f", resp);
+                    printf("\nEl factorial del numero es: %.2Lf", resp);
                 }
                 else
                 {
