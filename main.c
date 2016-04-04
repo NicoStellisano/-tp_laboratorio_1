@@ -123,7 +123,7 @@ int main()
                     resp = multiplicacion_de_2(num1,num2);
                     printf("\nLa multiplicacion de los numeros es: %.2f", resp);
                     resp = factorial(num1);
-                    printf("\nEl factorial del numero es: %.2Lf", resp);
+                    printf("\nEl factorial del numero es: %.2Lf\n", resp);
                 }
                 else
                 {
