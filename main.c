@@ -1,140 +1,184 @@
+#include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "funciones.h"
-#include <windows.h>
 
 int main()
 {
-    char seguir = 's';
-    int opcion = 0, band = 0, band1 = 0;
-    float num1 = 0 , num2 = 0 , resp;
+    char seguir='s';
+    int opcion=0;
+    int i,j;
+    int menor18=0,entre18y35=0,mayor35=0,mayorRango=0;
+    long int auxDni,resultado;
+    int flag1 = 0,flag2 = 0;
+    EPersona per[20],auxPer;
 
-    while(seguir == 's')
+    for(i=0;i<20;i++)
     {
-        printf("\n1- Ingresar 1er operando (A= %.2f)\n", num1);
-        printf("2- Ingresar 2do operando (B= %.2f)\n", num2);
-        printf("3- Calcular la suma (%.2f + %.2f)\n", num1,num2);
-        printf("4- Calcular la resta (%.2f - %.2f)\n", num1,num2);
-        printf("5- Calcular la division (%.2f / %.2f)\n", num1,num2);
-        printf("6- Calcular la multiplicacion (%.2f * %.2f)\n", num1,num2);
-        printf("7- Calcular el factorial (%.2f!)\n", num1);
-        printf("8- Calcular todas las operaciones\n");
-        printf("9- Salir\n\n");
+        per[i].estado = 0; // Declaro que se pueden utilizar todos los espacios
+    }
 
-        scanf("%d", &opcion);
+    while(seguir=='s')
+    {
+        printf("\n---------------------------------------");
+        printf("\n1- Agregar persona                     |\n");
+        printf("2- Borrar persona                      |\n");
+        printf("3- Imprimir lista ordenada por  nombre |\n");
+        printf("4- Imprimir grafico de edades          |\n");
+        printf("5- Salir                               |\n");
+        printf("---------------------------------------\n\n");
+
+        opcion = getch();//Uso getch para que no se vea el número de opcion ingresado
 
         switch(opcion)
         {
-            case 1:
-                system("cls");
-                printf("\nIngrese numero 1: ");
-                scanf("%f", &num1);
-                printf("\nNumero Ingresado: %.2f \n", num1);
-                band=1;//Valida que fue ingresado el primer número
-                break;
-            case 2:
-                system("cls");
-                printf("\nIngrese numero 2: ");
-                scanf("%f", &num2);
-                printf("\nNumero Ingresado: %.2f \n", num2);
-                band1=1;//Valida que fue ingresado el segundo número
-                break;
-            case 3:
-                if(band == 1 && band1 ==1)
+            case '1':
+                resultado = obtenerEspacioLibre(per);
+
+                if(resultado == 22)
                 {
-                    system("cls");
-                     resp = suma_de_2(num1,num2);//Suma el numero 1 con el numero 2
-                printf("\nLa suma de los numeros es: %.2f", resp);
+                    printf("No hay más espacio en la lista\n");
+
                 }else
                 {
-                    printf("\nDebe ingresar los 2 numeros\n");
-                }
-                break;
-
-            case 4:
-                if(band == 1 && band1 ==1)
-                {
                     system("cls");
-                resp = resta_de_2(num1,num2);//Resta el numero 1 con el numero 2
-                printf("\nLa resta de los numeros es: %.2f", resp);
-                }
-                else
-                {
-                    printf("\nDebe ingresar los 2 numeros\n");
-                }
-                break;
-            case 5:
-                if(band == 1 && band1 ==1)
-                {
+                    printf("Ingrese Nombre: \n");
+                    fflush(stdin);
+                    gets(per[resultado].nombre);
+                    val_Tam(per[resultado].nombre , 50);
+                    printf("Ingrese DNI(Numeros solamente): \n");
+                    scanf("%ld",&per[resultado].dni);
+                    printf("Ingrese Edad: \n");
+                    scanf("%d",&per[resultado].edad);
                     system("cls");
 
-                    while(num2==0)
-                  {
-                     printf("El segundo numero ingresado, debe ser distinto de 0");
-                     printf("\nIngrese numero 2: ");
-                     scanf("%f", &num2);
-                     printf("\nNumero Ingresado: %.2f \n", num2);
-                  }
+                    if(per[resultado].edad < 35)
+                    {
+                        if(per[resultado].edad >= 18)
+                        {
+                            entre18y35++;
+                        }else{
+                            menor18++;
+                            }
+                    }else
+                    {
+                        mayor35++;
+                    }
 
-                  resp = division_de_2(num1,num2);//Divide el numero 1 con el numero 2
-                  printf("\nLa division de los numeros es: %.2f", resp);
+                    per[resultado].estado = 1; /* Se declara ocupada la posición actual */
                 }
-                else
+
+                break;
+
+
+                break;
+            case '2':
+                printf("Ingrese DNI de la persona a eliminar (Numeros unicamente)\n");
+                scanf("%ld",&auxDni);
+                resultado = buscarPorDni(per,auxDni);
+
+                if(resultado == 21)
                 {
-                    printf("Debe ingresar los 2 numeros");
+                    printf("No se encuentra el DNI ingresado\n");
+
+                }else
+                {
+                    printf("La persona: %s , con edad: %d. y con el DNI: %ld. Ha sido eliminada\n",per[resultado].nombre,per[resultado].edad,per[resultado].dni);
+
+                    for(i = 49 ; i >= 0 ; i--) // Vacía la variable nombre con espacios
+                    {
+                        per[resultado].nombre[i] = ' ';
+                    }
+
+                    per[resultado].edad = 0;
+                    per[resultado].dni = 0;
+                    per[resultado].estado = 0;
+
                 }
                 break;
-            case 6:
-                if(band == 1 && band1 ==1)
+            case '3':
+                for(i = 0 ; i < 19 ; i++)//Ordenamiento de nombres alfabéticamente
                 {
-                    system("cls");
-                    resp = multiplicacion_de_2(num1,num2);//Multiplica el numero 1 con el numero 2
-                    printf("\nLa multiplicacion de los numeros es: %.2f", resp);
+                    for(j = i + 1 ; j < 20 ; j++)
+                    {
+                        if(strcmp(per[i].nombre , per[j].nombre) > 0)
+                        {
+                            auxPer = per[i];
+                            per[i] = per[j];
+                            per[j] = auxPer;
+
+
+                        }
+                    }
                 }
-                else
+
+                system("cls");
+
+                for(i = 0 ; i < 20 ; i++)
                 {
-                    printf("Debe ingresar los 2 numeros");
+
+                    if(per[i].estado==1)
+                    printf("\nNombre:%s\tEdad:%d\tDNI:%ld\n",per[i].nombre,per[i].edad,per[i].dni);
                 }
+
+
                 break;
-            case 7:
-                if(band == 1)
-                {
-                    system("cls");
-                    num1=(double)num1;
-                    resp = factorial(num1);//Realiza el factorial del numero 1
-                    printf("\nEl Factorial del numero es: %.2Lf", resp);
-                }
-                else
-                {
-                    printf("Debe ingresar el 1er numero");
-                }
+            case '4':
+                if(mayorRango < menor18)
+                    mayorRango = menor18;
+
+                if(mayorRango < entre18y35)
+                    mayorRango = entre18y35;
+
+                if(mayorRango < mayor35)
+                    mayorRango = mayor35;
+
+                system("cls");
+                printf("\n\n");
+
+                    for(i=mayorRango; i > 0 ; i--)//Gráfico
+                    {
+                        if(menor18 >= i)
+                        {
+                            flag1 = 1;
+                            printf("\t*");
+                        }
+
+                        if(entre18y35 >= i)
+                        {
+                            if(flag1 == 0)
+                                printf("\t\t*");
+
+                            if(flag1 ==1)
+                            {
+                                flag2=1;
+                                printf("\t*");
+                            }
+
+                        }
+
+                        if(mayor35 >= i)
+                        {
+                            if(flag1 == 0)
+                                printf("\t\t\t*");
+
+                            if(flag2==0 && flag1 ==1)
+                                printf("\t\t*");
+
+                            if(flag2==1)
+                                printf("\t*");
+                        }
+                        printf("\n");
+                    }
+
+                    printf("\t<18\t18-35\t>35\n");
                 break;
-            case 8:
-                if(band == 1 && band1 ==1)
-                {
-                    num1=(double)num1;
-                    system("cls");
-                    resp = suma_de_2(num1,num2);
-                    printf("\nLa suma de los numeros es: %.2f", resp);
-                    resp = resta_de_2(num1,num2);
-                    printf("\nLa resta de los numeros es: %.2f", resp);
-                    resp = division_de_2(num1,num2);
-                    printf("\nLa division de los numeros es: %.2f", resp);
-                    resp = multiplicacion_de_2(num1,num2);
-                    printf("\nLa multiplicacion de los numeros es: %.2f", resp);
-                    resp = factorial(num1);
-                    printf("\nEl factorial del numero es: %.2Lf\n", resp);
-                }
-                else
-                {
-                    printf("Debe ingresar los 2 numeros");
-                }
-                break;
-            case 9:
+            case '5':
                 seguir = 'n';
                 break;
         }
-    }
+        }
 
 
     return 0;
