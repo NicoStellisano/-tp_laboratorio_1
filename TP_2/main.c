@@ -9,9 +9,8 @@ int main()
     char seguir='s';
     int opcion=0;
     int i,j;
-    int menor18=0,entre18y35=0,mayor35=0,mayorRango=0;
+    int menor18 = 0,entre18y35 = 0,mayor35 = 0,mayorRango = 0,flag1 = 0,flag2 = 0;//Variables para realizar el gráfico
     long int auxDni,resultado;
-    int flag1 = 0,flag2 = 0;
     EPersona per[20],auxPer;
 
     for(i=0;i<20;i++)
@@ -46,8 +45,8 @@ int main()
                     printf("Ingrese Nombre: \n");
                     fflush(stdin);
                     gets(per[resultado].nombre);
-                    val_Tam(per[resultado].nombre , 50);
-                    printf("Ingrese DNI(Numeros solamente): \n");
+                    val_Tam(per[resultado].nombre , 51);
+                    printf("Ingrese DNI(Numeros unicamente): \n");
                     scanf("%ld",&per[resultado].dni);
                     printf("Ingrese Edad: \n");
                     scanf("%d",&per[resultado].edad);
@@ -80,6 +79,7 @@ int main()
 
                 if(resultado == 21)
                 {
+                    system("cls");
                     printf("No se encuentra el DNI ingresado\n");
 
                 }else
@@ -115,7 +115,7 @@ int main()
 
                 system("cls");
 
-                for(i = 0 ; i < 20 ; i++)
+                for(i = 0 ; i < 20 ; i++)//Lista ordenada
                 {
 
                     if(per[i].estado==1)
@@ -148,7 +148,10 @@ int main()
                         if(entre18y35 >= i)
                         {
                             if(flag1 == 0)
+                            {
                                 printf("\t\t*");
+                                flag2 = 1;
+                            }
 
                             if(flag1 ==1)
                             {
@@ -160,14 +163,12 @@ int main()
 
                         if(mayor35 >= i)
                         {
-                            if(flag1 == 0)
+                            if(flag2 == 1)
+                                printf("\t*");
+
+                            if(flag1 == 1 && flag2 ==0)
                                 printf("\t\t\t*");
 
-                            if(flag2==0 && flag1 ==1)
-                                printf("\t\t*");
-
-                            if(flag2==1)
-                                printf("\t*");
                         }
                         printf("\n");
                     }

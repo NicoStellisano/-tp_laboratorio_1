@@ -2,7 +2,8 @@
 #define FUNCIONES_H_INCLUDED
 
 /**
-* Estructura de una persona.
+* @typedef EPersona
+* @brief Estructura de una persona.
 * @var nombre Obtiene el nombre de la persona.
 * @var edad  Obtiene la edad de la persona.
 * @var estado  Obtiene la posición de la estructura en la que se guarda la persona.
@@ -10,7 +11,7 @@
 */
 typedef struct {
 
-    char nombre[50];
+    char nombre[51];
     int edad;
     int estado;
     long int dni;

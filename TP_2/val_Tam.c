@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "funciones.h"
+
 void val_Tam(char x[], int tam)
 {
     while(strlen(x)>tam-1)
