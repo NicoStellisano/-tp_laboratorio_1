@@ -167,7 +167,7 @@ int main()
                                 printf("\t*");
 
                             if(flag1 == 1 && flag2 ==0)
-                                printf("\t\t\t*");
+                                printf("\t\t*");
 
                         }
                         printf("\n");
